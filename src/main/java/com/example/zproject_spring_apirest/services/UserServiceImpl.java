@@ -14,8 +14,17 @@ import com.example.zproject_spring_apirest.repositories.UserRepository;
 @Service
 public class UserServiceImpl implements  UserService{
 
+    // @AUTOWIRED is a Spring annotation that allows automatic dependency injection in your application.  
+    // Spring looks for an instance of the required class and injects it automatically.
+
     @Autowired
     private UserRepository repository;
+
+    // @OVERRIDE Indicates that the findAll() method is overriding (redefining) a method from a parent class or interface.
+    // findAll() is implementing a method defined in JpaRepository or a custom interface.
+
+    // @TRANSACTIONAL Indicates that this operation is within a database transaction in Spring.
+    // readOnly = true optimizes the query because it tells Hibernate that no changes will be made to the database.
 
     @Override
     @Transactional(readOnly= true)
@@ -37,8 +46,25 @@ public class UserServiceImpl implements  UserService{
 
     @Override
     @Transactional
-    public Optional<User> delete(User user) {
-        Optional<User> userOptional = repository.findById(user.getId());
+    public Optional<User> update(Long id, User user) {
+        Optional<User> userOptional = repository.findById(id);
+        if(userOptional.isPresent()) {
+            User userDb = userOptional.orElseThrow();
+
+            userDb.setFirstName(user.getFirstName());
+            userDb.setSecondName(user.getSecondName());
+            userDb.setEmail(user.getEmail());
+            userDb.setPhoneNumber(user.getPhoneNumber());
+            userDb.setAge(user.getAge());
+            return Optional.of(repository.save(userDb));
+        };
+        return userOptional;
+    }
+
+    @Override
+    @Transactional
+    public Optional<User> delete(Long id) {
+        Optional<User> userOptional = repository.findById(id);
         userOptional.ifPresent(userDb -> {
             repository.delete(userDb);
         });
