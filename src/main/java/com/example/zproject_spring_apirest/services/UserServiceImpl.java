@@ -71,4 +71,10 @@ public class UserServiceImpl implements  UserService{
         return userOptional;
     }
 
+    @Override
+    @Transactional(readOnly= true)
+    public List<User> findByName(String name) {
+        return repository.findByName(name);
+    }
+
 }

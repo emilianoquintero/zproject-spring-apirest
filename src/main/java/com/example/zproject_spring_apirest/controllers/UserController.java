@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.zproject_spring_apirest.entities.User;
 import com.example.zproject_spring_apirest.services.UserService;
 
 import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -75,6 +77,14 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/findbyname")
+    public ResponseEntity<List<User>> getUserByName(@RequestParam String name) {
+        List<User> users = service.findByName(name);
+        return ResponseEntity.ok(users);
+
+    }
+    
 
     private ResponseEntity<?> validation(BindingResult result) {
         // TODO Auto-generated method stub

@@ -8,7 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -19,31 +18,33 @@ import lombok.Setter;
 @Table(name="users")
 public class User {
 
+    // The validation message are configurated with de lenguage of the time zone.
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "id")
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message="{NotEmpty.user.firstname}")
     @Size(min=2, max=14)
     @Getter @Setter @Column(name = "firstname")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message="{NotEmpty.user.secondname}")
     @Size(min=2, max=14)
     @Getter @Setter @Column(name = "secondname")
     private String secondName;
 
-    @NotBlank
+    @NotEmpty(message="{NotEmpty.user.email}")
     @Getter @Setter @Column(name = "email")
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message="{NotEmpty.user.phonenumber}")
     @Size(min=10, max=10)
     @Getter @Setter @Column(name = "phonenumber")
     private String phoneNumber;
 
-    @NotNull
+    @NotNull(message="{NotBlank.user.age}")
     @Min(1)
     @Max(99)
     @Getter @Setter @Column(name = "age")

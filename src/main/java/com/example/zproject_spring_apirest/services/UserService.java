@@ -16,4 +16,6 @@ public interface UserService {
     Optional<User> update(Long id, User user);
 
     Optional<User> delete(Long id);
+
+    List<User> findByName(String name);
 }
