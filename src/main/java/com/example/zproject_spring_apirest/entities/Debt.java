@@ -1,6 +1,6 @@
 package com.example.zproject_spring_apirest.entities;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="user_debt")
+@Table(name="users_debt")
 public class Debt {
 
     @Id
@@ -22,10 +22,10 @@ public class Debt {
     private Long id;
     
     @Getter @Setter @Column(name = "user_id")
-    private String firstName;
+    private Long userId;
     
     @Getter @Setter @Column(name="debt_amount")
-    private BigInteger debtAmount;
+    private BigDecimal debtAmount;
     
     @Getter @Setter @Column(name="due_date")
     private LocalDate dueDate;

@@ -9,7 +9,8 @@ import com.example.zproject_spring_apirest.entities.Debt;
 public interface DebtService {
 
     // List<Object[]> findAllDebts();
-    List<DebtDto> findAllDebts();
+
+    List<Debt> findAll();
 
     Optional<Debt> findById(Long id);
 
@@ -18,4 +19,8 @@ public interface DebtService {
     Optional<Debt> update(Long id, Debt debt);
 
     Optional<Debt> delete(Long id);
+
+    List<DebtDto> findAllDebts();
+
+    List<DebtDto> findUserDebt(Long id);
 }

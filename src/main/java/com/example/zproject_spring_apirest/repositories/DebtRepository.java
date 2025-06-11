@@ -24,6 +24,6 @@ public interface DebtRepository  extends JpaRepository<Debt, Long>{
     List<Object[]> findAllDebts();
 
     @Query(
-    value="SELECT u.id, u.firstname, u.secondname, u.email, u.phonenumber, ud.debt_amount, ud.due_date, ud.description FROM users u JOIN users_debt ud ON u.id = ud.user_id WHERE u.id = :id", nativeQuery = true)    
+    value="SELECT ud.debt_id, u.id, u.firstname, u.secondname, u.email, u.phonenumber, ud.debt_amount, ud.due_date, ud.description FROM users u JOIN users_debt ud ON u.id = ud.user_id WHERE u.id = :id ORDER BY ud.debt_id", nativeQuery = true)    
     List<Object[]> findUserDebt(@Param("id") Long id);
 }
