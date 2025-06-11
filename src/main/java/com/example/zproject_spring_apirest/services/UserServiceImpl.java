@@ -3,6 +3,8 @@ package com.example.zproject_spring_apirest.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import com.example.zproject_spring_apirest.repositories.UserRepository;
 // Service is a @component wich determinate the business service facade 
 @Service
 public class UserServiceImpl implements  UserService{
+        private static final Logger logger = LoggerFactory.getLogger(DebtService.class);
 
     // @AUTOWIRED is a Spring annotation that allows automatic dependency injection in your application.  
     // Spring looks for an instance of the required class and injects it automatically.
@@ -29,6 +32,7 @@ public class UserServiceImpl implements  UserService{
     @Override
     @Transactional(readOnly= true)
     public List<User> findAll() {
+        logger.info("Obteniendo informacion de base de datos");
         return (List<User>) repository.findAll();
     }
 

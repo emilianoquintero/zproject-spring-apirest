@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     // @Autowired It's a way of telling Spring that it must provide an instance of a bean without us having to create it manually.
     // @Autowired Spring looks for a bean of the corresponding type in the application context and automatically injects it.
@@ -36,6 +39,7 @@ public class UserController {
 
     @GetMapping
     public List<User> List() {
+        logger.info("Iniciando consulta findAll");
         return service.findAll();
     }
 
