@@ -43,6 +43,7 @@ public class User {
 
     @NotNull(message="{NotBlank.user.phonenumber}")
     @Min(1)
+    @Max(10)
     @Getter @Setter @Column(name = "phonenumber")
     private BigInteger phoneNumber;
 
