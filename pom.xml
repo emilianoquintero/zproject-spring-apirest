@@ -11,7 +11,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>zproject-spring-apirest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<!-- <packaging>war</packaging> -->
+	<packaging>jar</packaging>
 	<name>zproject-spring-apirest</name>
 	<description>Demo apirest project for Spring Boot</description>
 	<url/>

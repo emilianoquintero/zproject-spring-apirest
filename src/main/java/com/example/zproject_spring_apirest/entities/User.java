@@ -1,5 +1,7 @@
 package com.example.zproject_spring_apirest.entities;
 
+import java.math.BigInteger;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,10 +41,10 @@ public class User {
     @Getter @Setter @Column(name = "email")
     private String email;
 
-    @NotEmpty(message="{NotEmpty.user.phonenumber}")
-    @Size(min=10, max=10)
+    @NotNull(message="{NotBlank.user.phonenumber}")
+    @Min(1)
     @Getter @Setter @Column(name = "phonenumber")
-    private String phoneNumber;
+    private BigInteger phoneNumber;
 
     @NotNull(message="{NotBlank.user.age}")
     @Min(1)
